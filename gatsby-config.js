@@ -1,3 +1,8 @@
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 let contentfulConfig
 
 try {
@@ -28,7 +33,10 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      },
     },
   ],
 }
